@@ -1,4 +1,5 @@
 (ns bank-ocr-front.db)
 
 (def default-db
-  {:name "re-frame"})
+  {:name "Bank OCR"
+   })
