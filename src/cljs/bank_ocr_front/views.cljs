@@ -7,10 +7,9 @@
 
 (defn file-input [] 
   [re-com/box 
-   :padding "1em"
+   :margin "20px 0 0 0"
    :child [:div 
            [:input {:type "file" :id "file" :name "file"
-                    ;; TODO: Put styles in a separate file
                     :style {:width "0.1px"
                             :height "0.1px"
                             :opacity "0"
@@ -23,11 +22,12 @@
             :label {:for "file"
                     :style {
                             :height "50px"
+                            :margin "0"
                             :font-size "12px"
                             :font-weight "700"
                             :text-transform "uppercase"
                             :color "white"
-                            :line-height "48px"
+                            :line-height "46px"
                             :background-color "black"
                             :display "inline-block"
                             :width "200px auto"
@@ -46,6 +46,7 @@
 
 (defn upload-button [] 
   [re-com/box 
+   :margin "20px 0 0 0"
    :child [re-com/button 
            :style {
                    :background-color "rgb(254, 65, 77)"
@@ -65,7 +66,7 @@
 
 (defn upload-result []
   [re-com/box 
-   :margin "30px 0 0 0"
+   :margin "20px 0 0 0"
    :height "50px"
    :style {
            :color "#000"
@@ -82,13 +83,13 @@
 
 (defn footer []
   [re-com/box 
-               :width "100%"
-               :height "10px"
-               :style {:background-color "#FD414C"
-                       :position "fixed"
-                       :bottom "0"
-                       }
-               :child [:div ]]
+   :width "100%"
+   :height "10px"
+   :style {:background-color "#FD414C"
+           :position "fixed"
+           :bottom "0"
+           }
+   :child [:div ]]
   )
 
 
