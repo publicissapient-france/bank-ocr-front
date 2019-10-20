@@ -55,7 +55,6 @@
                    :height "50px"
                    :color "#fff"
                    :border "2px solid #fff"
-                   ;;:border-radius "25px"
                    :border-radius "7px"
                    :box-shadow "0 10px 20px rgba(0,0,0,.2)"
                    :padding "0 1.25rem 0 1.25rem"
@@ -63,6 +62,35 @@
            :on-click #(re-frame/dispatch [:upload-file]) :label "Upload file" ]
    ]
   )
+
+(defn upload-result []
+  [re-com/box 
+   :margin "30px 0 0 0"
+   :height "50px"
+   :style {
+           :color "#000"
+           :border "2px solid rgb(254, 65, 77)"
+           :text-align "center"
+           :line-height "48px"
+           :font-size "30px"
+           :font-weight "700"
+           :border-radius "7px"
+           :padding "0 1.25rem 0 1.25rem"
+           }
+   :child [:div @(re-frame/subscribe [::subs/message])]]
+  )
+
+(defn footer []
+  [re-com/box 
+               :width "100%"
+               :height "10px"
+               :style {:background-color "#FD414C"
+                       :position "fixed"
+                       :bottom "0"
+                       }
+               :child [:div ]]
+  )
+
 
 (defn main-panel []
   [re-com/v-box 
@@ -84,12 +112,6 @@
               (file-input)
               (if @(re-frame/subscribe [::subs/file-chosen]) 
                 (upload-button))
-              [re-com/box :child [:div [:h4 @(re-frame/subscribe [::subs/message])]]]
-              [re-com/box 
-               :width "100%"
-               :height "10px"
-               :style {:background-color "#FD414C"
-                       :position "fixed"
-                       :bottom "0"
-                       }
-               :child [:div ]]]])
+              (if @(re-frame/subscribe [::subs/message]) 
+                (upload-result))
+              (footer)]])
