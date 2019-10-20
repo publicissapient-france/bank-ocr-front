@@ -1,9 +1,6 @@
 (ns bank-ocr-front.events
-  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require
-    [cljs-http.client :as http]
     [ajax.core :as ajax]
-    [cljs.core.async :refer [<!]]
     [re-frame.core :as re-frame]
     [day8.re-frame.http-fx :as http-fx]
     [bank-ocr-front.db :as db]
@@ -26,19 +23,6 @@
   (fn [db [_ body]]
     (assoc db :message "Something went wrong... try another file")
     )
-  )
-
-
-
-(defn upload-file-old [db]
-  (go (let [file (:chosen-file db)
-            response (<! (http/post "https://localhost:5001/api/ocr"
-                                    {:with-credentials? false
-                                     :multipart-params {"file" file}}))]
-        (prn (:status response))
-        (prn (js->clj response))
-        (re-frame/dispatch [:file-uploaded (:message (:body response))])
-        ))
   )
 
 (re-frame/reg-event-db
