@@ -18,3 +18,10 @@
     (if (some? (:chosen-file db)) true false)
     )
   )
+
+(re-frame/reg-sub 
+  ::message
+  (fn [db]
+    (:message db)
+    )
+  )

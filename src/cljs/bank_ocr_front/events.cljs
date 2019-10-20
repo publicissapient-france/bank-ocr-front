@@ -12,24 +12,34 @@
   (fn [_ _]
     db/default-db))
 
-(defn upload-file [upload-file]
-  (go (let [response (<! (http/post "https://localhost:5001/api/ocr"
+(re-frame/reg-event-db
+  :file-uploaded
+  (fn [db [_ message]]
+    (assoc db :message message)
+    )
+  )
+
+(defn upload-file [db]
+  (go (let [file (:chosen-file db)
+            response (<! (http/post "https://localhost:5001/api/ocr"
                                     {:with-credentials? false
-                                     :multipart-params {"file" upload-file}}))]
+                                     :multipart-params {"file" file}}))]
         (prn (:status response))
-        (prn (js->clj response))))
+        (prn (js->clj response))
+        (re-frame/dispatch [:file-uploaded (:message (:body response))])
+        ))
   )
 
 (re-frame/reg-event-db
   :choose-file
-  (fn [db [_ upload-file]]
-    (assoc db :chosen-file upload-file)
+  (fn [db [_ file]]
+    (assoc db :chosen-file file)
     ))
 
 (re-frame/reg-event-db
   :upload-file
   (fn [db _]
-    (upload-file (:chosen-file db))
-    (assoc db :chosen-file nil)  
+    (upload-file db)
+  ;;  (assoc db :chosen-file nil)  
     ))
 
