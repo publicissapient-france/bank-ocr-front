@@ -22,12 +22,21 @@
            [
             :label {:for "file"
                     :style {
-                            :font-size "1.25em"
+                            :height "50px"
+                            :font-size "12px"
                             :font-weight "700"
+                            :text-transform "uppercase"
                             :color "white"
+                            :line-height "48px"
                             :background-color "black"
                             :display "inline-block"
-                            :padding "0.625rem 1.25rem"
+                            :width "200px auto"
+                            :padding "0 1.25rem 0 1.25rem"
+                            :border "2px solid #fff"
+                            :border-radius "7px"
+                            :cursor "pointer"
+                            :box-shadow "0 10px 20px rgba(0,0,0,.2)"
+                            :text-align "center"
                             }
                     } @(re-frame/subscribe [::subs/file-name])
             ]
@@ -37,19 +46,50 @@
 
 (defn upload-button [] 
   [re-com/box 
-   :child [re-com/button :on-click #(re-frame/dispatch [:upload-file]) :label "Upload file" ]
+   :child [re-com/button 
+           :style {
+                   :background-color "rgb(254, 65, 77)"
+                   :font-size "12px"
+                   :font-weight "700"
+                   :text-transform "uppercase"
+                   :height "50px"
+                   :color "#fff"
+                   :border "2px solid #fff"
+                   ;;:border-radius "25px"
+                   :border-radius "7px"
+                   :box-shadow "0 10px 20px rgba(0,0,0,.2)"
+                   :padding "0 1.25rem 0 1.25rem"
+                   }
+           :on-click #(re-frame/dispatch [:upload-file]) :label "Upload file" ]
    ]
   )
 
 (defn main-panel []
   [re-com/v-box 
-   :margin "100px"
    :height "400px"
    :align :center
-   :children [[:img {:src "https://xebicon.fr/wp-content/uploads/2019/02/xebicon19-header.png"}]
-              [re-com/box :child [:h1 "Bank OCR"]]
+   :children [[re-com/box 
+               :width "100%"
+               :height "70px"
+               :style {:background-color "black"}
+               :child [:div {:style {
+                                     :background "no-repeat url('img/xebicon19-header.png') "
+                                     :height "100%"
+                                     }}]]
+              [re-com/box :child [:h1 {:style {
+                                               :color "black"
+                                               :font-size "48px"
+                                               :margin-top "70px"
+                                               }} "Bank OCR"]]
               (file-input)
               (if @(re-frame/subscribe [::subs/file-chosen]) 
                 (upload-button))
               [re-com/box :child [:div [:h4 @(re-frame/subscribe [::subs/message])]]]
-              ]])
+              [re-com/box 
+               :width "100%"
+               :height "10px"
+               :style {:background-color "#FD414C"
+                       :position "fixed"
+                       :bottom "0"
+                       }
+               :child [:div ]]]])
