@@ -46,7 +46,7 @@
    :margin "100px"
    :height "400px"
    :align :center
-   :children [
+   :children [[:img {:src "https://xebicon.fr/wp-content/uploads/2019/02/xebicon19-header.png"}]
               [re-com/box :child [:h1 "Bank OCR"]]
               (file-input)
               (if @(re-frame/subscribe [::subs/file-chosen]) 

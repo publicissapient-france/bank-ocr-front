@@ -5,8 +5,10 @@
                                org.clojure/google-closure-library]]
                  [thheller/shadow-cljs "2.8.59"]
                  [cljs-http "0.1.46"]
+                 [cljs-ajax "0.7.5"]
                  [reagent "0.8.1"]
                  [re-frame "0.10.9"]
+                 [day8.re-frame/http-fx "0.1.6"]
                  [re-com "2.6.0"]]
 
   :plugins []
