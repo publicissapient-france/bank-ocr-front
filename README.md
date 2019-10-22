@@ -1,6 +1,6 @@
 # bank-ocr-front
 
-A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.
+Front BankOCR for Xebicon19
 
 ## Development Mode
 
@@ -16,4 +16,13 @@ shadow-cljs will automatically push cljs changes to the browser.
 Wait a bit, then browse to [http://localhost:8280](http://localhost:8280).
 
 ## Production Build
+
+```
+lein clean
+lein prod
+```
+
+## Dependencies
+
+This project relies on the [bank-ocr-back](https://github.com/xebia-france/bank-ocr-back) running on `localhost:5001`
 
