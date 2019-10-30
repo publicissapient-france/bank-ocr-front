@@ -6,3 +6,22 @@
  ::name
  (fn [db]
    (:name db)))
+
+(re-frame/reg-sub
+  ::file-name  
+  (fn [db]
+    (if (nil? (:chosen-file db)) "Choose a file..." (.-name (:chosen-file db)) )))     
+
+(re-frame/reg-sub 
+  ::file-chosen
+  (fn [db]
+    (if (some? (:chosen-file db)) true false)
+    )
+  )
+
+(re-frame/reg-sub 
+  ::message
+  (fn [db]
+    (:message db)
+    )
+  )
