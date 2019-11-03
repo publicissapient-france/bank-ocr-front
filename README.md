@@ -4,10 +4,21 @@ Front BankOCR for Xebicon19
 
 ## Development Mode
 
-### Run application:
+### Prerequisites
+
+- Java 8 or later with `JAVA_HOME` set
+- [Leiningen](https://github.com/technomancy/leiningen)
+- Node and NPM (required by shadow-cljs)
+
+### Install
 
 ```
-lein clean
+npm i
+```
+
+### Run application
+
+```
 lein dev
 ```
 
