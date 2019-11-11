@@ -23,10 +23,17 @@
            :class "upload-button"
            :on-click #(re-frame/dispatch [:upload-file]) :label "Upload file" ]])
 
+(defn split-new-line [input] 
+  (clojure.string/split input #"\n"))
+
 (defn upload-result []
-  [re-com/box 
-   :class "upload-result"
-   :child [:div @(re-frame/subscribe [::subs/message])]])
+  (let [message @(re-frame/subscribe [::subs/message])
+        lines (split-new-line message)]
+        [re-com/box 
+         :class "upload-result"
+         :child [:pre (for [line lines]
+                        [:div {:key line} line])]]
+        ))
 
 (defn footer []
   [re-com/box 
