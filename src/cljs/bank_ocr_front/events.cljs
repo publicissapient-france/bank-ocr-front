@@ -28,7 +28,7 @@
 (re-frame/reg-event-db
   :file-data
   (fn [db [_ data]]
-    (assoc db :message data)))
+    (assoc db :upload-preview data)))
 
 (def extract-result
   (map #(-> % .-target .-result js->clj)))
