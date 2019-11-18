@@ -1,5 +1,6 @@
 (defproject bank-ocr-front "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.10.1"]
+                 [org.clojure/core.async "0.4.500"]
                  [org.clojure/clojurescript "1.10.520"
                   :exclusions [com.google.javascript/closure-compiler-unshaded
                                org.clojure/google-closure-library]]

@@ -19,6 +19,11 @@
     )
   )
 
+(re-frame/reg-sub
+ ::upload-preview
+ (fn [db]
+   (:upload-preview db)))
+
 (re-frame/reg-sub 
   ::message
   (fn [db]

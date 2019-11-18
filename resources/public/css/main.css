@@ -83,17 +83,35 @@
   color: #fff;
 }
 
+.upload-preview {
+  margin: 20px 0 0 0;
+  height: 50px auto;
+  color: #000;
+  border: 2px solid rgb(254, 65, 77);
+  border-radius: 7px;
+  padding: 0 1.25rem 0 1.25rem;
+}
+
+.upload-preview pre {
+  background-color: white;
+  border: 0;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: left;
+  padding: 0 0 1.25rem 0;
+}
+
 .upload-result {
   margin: 20px 0 0 0;
-  height: 50px;
+  height: 50px auto;
   color: #000;
   border: 2px solid rgb(254, 65, 77);
   text-align: center;
   line-height: 48px;
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 50px;
+  font-weight: 300;
   border-radius: 7px;
-  padding: 0 1.25rem 0 1.25rem;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
 }
 
 .footer {

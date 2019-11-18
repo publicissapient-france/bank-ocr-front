@@ -23,10 +23,25 @@
            :class "upload-button"
            :on-click #(re-frame/dispatch [:upload-file]) :label "Upload file" ]])
 
+
 (defn upload-result []
-  [re-com/box 
-   :class "upload-result"
-   :child [:div @(re-frame/subscribe [::subs/message])]])
+  (let [message @(re-frame/subscribe [::subs/message])]
+        [re-com/box 
+         :class "upload-result"
+         :child [:div message]]))
+
+
+(defn split-new-line [input] 
+  (clojure.string/split input #"\n"))
+
+(defn upload-preview []
+  (let [preview @(re-frame/subscribe [::subs/upload-preview])
+        lines (split-new-line preview)]
+        [re-com/box 
+         :class "upload-preview"
+         :child [:pre (for [line lines]
+                        [:div {:key line} line])]]
+        ))
 
 (defn footer []
   [re-com/box 
@@ -43,6 +58,8 @@
                :child [:div {:class-name "nav-logo"}]]
               [re-com/box :child [:h1 {:class-name "title"} "Bank OCR"]]
               (file-input)
+              (if @(re-frame/subscribe [::subs/upload-preview]) 
+                (upload-preview))
               (if @(re-frame/subscribe [::subs/file-chosen]) 
                 (upload-button))
               (if @(re-frame/subscribe [::subs/message]) 
